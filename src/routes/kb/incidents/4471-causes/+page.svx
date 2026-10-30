@@ -4,7 +4,7 @@ title: '#4471 · two causes, not one'
 owner: support desk
 status: accepted
 reviewed: 2026-10-30
-signature: kacperozja
+signature: v1.eyJzdWIiOiI1ODY1IiwiYXVkIjoiY2hhbGxlbmdlOndoYXQtaXQtc2hvd3MiLCJpYXQiOjE3OTMzNzE1NzksImV4cCI6MTc5MzQ1Nzk3OX0.TXrVrR5-lISEBCi_5Vklws-dmSHKF7j4IBX7_TG7L0g
 ---
 
 <script>
@@ -12,7 +12,7 @@ signature: kacperozja
   import Callout from '#lib/kb/Callout.svelte';
   import RenderStamp from '#lib/kb/RenderStamp.svelte';
 
-  const signature = 'kacperozja';
+  const signature = 'v1.eyJzdWIiOiI1ODY1IiwiYXVkIjoiY2hhbGxlbmdlOndoYXQtaXQtc2hvd3MiLCJpYXQiOjE3OTMzNzE1NzksImV4cCI6MTc5MzQ1Nzk3OX0.TXrVrR5-lISEBCi_5Vklws-dmSHKF7j4IBX7_TG7L0g';
 </script>
 
 Ticket #4471 was merged as one issue: "dates parse mm/dd in eu locales." It is three.

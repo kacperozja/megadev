@@ -15,11 +15,11 @@ signature: kacperozja
   const signature = 'kacperozja';
 </script>
 
-Ticket #4471 was merged as one issue: "dates parse mm/dd in eu locales." It is two.
+Ticket #4471 was merged as one issue: "dates parse mm/dd in eu locales." It is three.
 
-## The two causes
+## The three causes
 
-**parser** (379 reports, 11 tenants): The shared date parser reads every date month-first
+**parser** (374 reports, 11 tenants): The shared date parser reads every date month-first
 (MM/DD). Tenants whose locale writes the day first (DD/MM) get day and month swapped in
 invites and reminders. Affects `app` and `email` channels.
 
@@ -29,8 +29,14 @@ input in the tenant's locale (day-first). Day and month swap again — a differe
 on the `form` channel, only for tenants on booking-v3: alder.physio, copper.studio,
 pale.harbour.
 
+**off-by-one** (5 reports, 4 tenants): Bookings land on the adjacent day — one day off,
+not a month/day swap. The desk read these as a one-day move (desk-notes `oneDayMove`).
+Likely a timezone or date-boundary bug: R-41344 shows Lisbon and Toronto getting different
+days for the same meeting.
+
 <Callout kind="warn">
-These need separate fixes. The parser fix does not help form users who followed the hint.
+These need separate fixes. The parser fix does not help form users who followed the hint,
+and neither fix addresses the off-by-one timezone issue.
 </Callout>
 
 ## What was merged
@@ -44,13 +50,10 @@ alone. Reports about both bugs carry subjects like "Date is wrong" and "Month an
 swapped?" — the same words, different causes. The channel and the tenant's booking form
 decide the cause, not the subject.
 
-Five reports were read by the desk as a one-day move. By tenant locale they belong to
-`parser`.
-
 ## What to do
 
 File each cause as its own ticket. The parser bug is the larger one; the hint bug needs a
 form-side fix (either change the hint to match the locale, or change the form to read what
-the hint says).
+the hint says). The off-by-one reports need a timezone investigation.
 
 <RenderStamp {signature} />
